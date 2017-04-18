@@ -49,9 +49,8 @@
             </div>
 
             <button class="margin-menu btn btn-success btn-block"type="submit" name="button">Entrar</button>
-  			
-  			<a href="register.jsp" class="btn btn-link">Quero ser um autor(a) <span class="glyphicon glyphicon-pencil"></span></a>        	
           </form>
+
           <div class="footer-bar">
             <h3 class=""><span class="glyphicon glyphicon-copyright-mark"></span> Copyright 2017 - All Rights Reserved</h3>
           </div>
@@ -62,53 +61,55 @@
 
           <div class="content">
           <%
-	        String query = String.format("SELECT * FROM article");
-	        ArrayList<String> idArticles = CodificandoDAO.getCodificandoDAO().read(query, "id");
+          	String idArticle = request.getParameter("idArticle");
+	        String query = String.format("SELECT * FROM section");
+	        ArrayList<String> idSections = CodificandoDAO.getCodificandoDAO().read(query, "id");
 
           	//if not exist articles
-          	if(idArticles.size() == 0){
+          	if(idSections.size() == 0){
 	        %>
           	<div class="element-block element-center-x-y">
-            	<img src="./image/bookshelf.png" alt="empty"/>
-            	<h1>Ops... estamos sem artigos no momento!</h1>
+            	<img src="./image/warning.png" alt="empty"/>
+            	<h1>Essa não, as seções sumiram!</h1>
           	</div>
 
         	<%
 	        }else{
+	        	//info of article
+        		query = String.format("SELECT * FROM article WHERE id=%s", idArticle);
+        		String title = CodificandoDAO.getCodificandoDAO().read(query, "title").get(0);
+        		String date = Date.formatNormal(CodificandoDAO.getCodificandoDAO().read(query, "date_create").get(0));
+
+        		//info of user
+        		String idAdm = CodificandoDAO.getCodificandoDAO().read(query, "id_adm").get(0);
+        		query = String.format("SELECT * FROM adm WHERE id=%s", idAdm);
+        		String name = CodificandoDAO.getCodificandoDAO().read(query, "first_name").get(0) + " " +  CodificandoDAO.getCodificandoDAO().read(query, "last_name").get(0);
+
+
 	        %>
 	        <header class="header border-bottom">
-              <h1>Postagens recentes</h1>
+              <h1><%=title %></h1>
+              <h2><span class="glyphicon glyphicon-pencil"></span>&nbsp; <%=name %>&nbsp; &nbsp; <span class="glyphicon glyphicon-calendar"></span> <%=date %></h2>
+              
             </header>
+            <article class="article">
 	        <%
 	           	//exist article
-	        	for(int index = 0; index < idArticles.size(); index ++){
+	        	  for(int index = 0; index < idSections.size(); index ++){
 
-	        		//info of article
-	        		query = String.format("SELECT * FROM article WHERE id=%s", idArticles.get(index));
-	        		String title = CodificandoDAO.getCodificandoDAO().read(query, "title").get(0);
-	        		String desc = CodificandoDAO.getCodificandoDAO().read(query, "description").get(0);
-	        		String date = Date.formatNormal(CodificandoDAO.getCodificandoDAO().read(query, "date_create").get(0));
-
-	        		//info of user
-	        		String idAdm = CodificandoDAO.getCodificandoDAO().read(query, "id_adm").get(0);
-	        		query = String.format("SELECT * FROM adm WHERE id=%s", idAdm);
-	        		String name = CodificandoDAO.getCodificandoDAO().read(query, "first_name").get(0) + " " +  CodificandoDAO.getCodificandoDAO().read(query, "last_name").get(0);
+	        		//info of section
+	        		query = String.format("SELECT * FROM section WHERE id=%s", idSections.get(index));
+	        		String titleSection = CodificandoDAO.getCodificandoDAO().read(query, "title").get(0);
+	        		String content = CodificandoDAO.getCodificandoDAO().read(query, "content").get(0);
 	       	%>
 
-            <div class="card">
-              <a href="content.jsp?idArticle=<%= idArticles.get(index)%>">
-              <div class="card-text">
-                <h1><%=title %></h1>
-                <h2><span class="glyphicon glyphicon-pencil"></span>&nbsp; <%=name %>&nbsp; &nbsp; <span class="glyphicon glyphicon-calendar"></span> <%=date %></h2>
-                <p>
-                <%=desc %>
-                </p>
+  				      <h2><%=titleSection %></h2>
+  				      <p><%=content %></p>
 
-              </div>
-              </a>
-            </div>
-            <%		}
-            	} %>
+            <%}%>
+              </article>
+            <%}%>
+
           </div>
         </div>
       </div>

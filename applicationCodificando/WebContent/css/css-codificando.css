@@ -1,6 +1,23 @@
+html, body, .row, .content, .all{
+  height: 100%;
+}
+
+.btn-link{
+	color:#afafaf;
+}
+
+.btn-link:hover, .btn-link:focus{
+    color:#615f60;
+}
+
 .background{
   background: #fbfbfb;
 }
+
+.margin-menu{
+  margin-top: 2%;
+}
+
 .bar{
   background-color: #1c1f1c;
   box-shadow: 0 2px 5px 3px black;
@@ -88,21 +105,46 @@
 
 }
 
+.article{
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.article h2{
+  font-size: 20pt;
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+.article p{
+	font-size:15pt;
+	margin-left:1%;
+}
+
 .header{
   padding: 2% 0% 0% 0%;
-  margin-bottom: 100px;
+  margin-bottom: 15%;
   font-family: latoBold;
   font-size:60px;
 }
 .header h1{
-  font-size: 50px;
+  font-size: 50pt;
 }
+
+.header h2{
+  margin-top: 1%;
+  margin-left: 1%;
+  font-size: 10pt;
+  font-family: latoTint;
+}
+
 .footer-bar{
   position: absolute;
   bottom: 0;
   left: 0;
   text-align: center;
   width: 100%;
+  color:white;
 
 }
 
@@ -137,9 +179,20 @@
 .element-block{
   width: 100%;
 }
+.element-top{
+  position: absolute;
+  top: 0%;
+}
 
+.element-center-x-y{
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
 .element-center{
-  position: relative;
+  position: absolute;
   left: 50%;
 }
 .element-center.element-sm{
@@ -218,11 +271,19 @@
   }
 }
 
+@media screen and ( min-width: 768px ) {
+  .collapse{
+      display: block;
+  }
+}
+
+
 @media screen and ( max-width: 767px ) {
   .button-menu{
     display: inline;
     background-color: white;
   }
+}
 
 /*smartphone large*/
 @media screen and (min-width: 330px)and (max-width: 549px){
