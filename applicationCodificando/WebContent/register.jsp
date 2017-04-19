@@ -14,8 +14,6 @@
     <link rel="icon" href="image/icon.png">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css-codificando.css">
-    <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
 
@@ -25,7 +23,6 @@
     <div class="container-fluid" style="height:100%;">
 
       <div class="row">
-
         <%-- button menu --%>
         <button type="button" class="button-menu" data-toggle="collapse" data-target="#menu"></button>
 
@@ -37,12 +34,12 @@
           	</a>
           </div>
 
-          <form class="element-center-x-y element-lg">
+          <form class="element-center-x-y element-lg" method="post" action="./LoginUser">
             <div class="margin-menu input-group">
               <input id="email" type="text" class="form-control" name="email" placeholder="Email">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             </div>
-
+          
             <div class="margin-menu input-group">
               <input id="password" type="password" class="form-control" name="password" placeholder="Password">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -60,9 +57,9 @@
         <div class="col-sm-offset-4 col-md-offset-3 all" >
 
           <div class="content">
-
-            <form class="element-block element-center-x-y form-horizontal" method="post" action="./RegisterUser">
-              <h1 class="header">Cadastro</h1>
+			<h1 class="header">Cadastro</h1>
+            <form class="element-block form-horizontal" method="post" action="./RegisterUser">
+              
 
               <div class="form-group">
     			      <label class="control-label col-sm-3" for="first-name">Primeiro nome:</label>
@@ -95,20 +92,30 @@
               <div class="form-group">
     			      <label class="control-label col-sm-3" for="date">Data de nascimento:</label>
     			      <div class="col-sm-9">
-    			        <input type="text" class="form-control" name="date">
+    			        <input type="text" class="form-control" name="date" placeholder="Digite sua data de nascimento">
     			      </div>
     		  </div>
-
+    		  
     		  <div class="form-group">
-    			      <label class="control-label col-sm-3" for="description">Quem é você?</label>
+    			      <label class="control-label col-sm-3" for="gender">Sexo:</label>
     			      <div class="col-sm-9">
-    			        <input type="textarea" class="form-control" name="description">
+    			      <label class="radio-inline"><input type="radio" name="gender" value="masculino"> Masculino</label>
+       			      <label class="radio-inline"><input type="radio" name="gender" value="feminino"> Feminino</label> 			      
     			      </div>
     		  </div>
+    		  
 
     		  <div class="form-group">
+    			      <label class="control-label col-sm-3" for="description">Biografia</label>
+    			      <div class="col-sm-9">
+    			        <textarea type="textarea" class="form-control" name="description" placeholder="Fale um pouco sobre você"></textarea>
+    			      </div>
+    		  </div>
+    		  
+    		   
+    		  <div class="form-group margin-top">
     			      <div class="col-sm-offset-2 col-sm-10">
-    			        <button type="submit" class="margin-top btn btn-primary element-sm">Cadastrar</button>
+    			        <button type="submit" class="btn btn-primary element-sm">Cadastrar</button>
     			      </div>
     		  </div>
   		  	</form>

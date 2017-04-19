@@ -157,4 +157,37 @@ public class CodificandoDAO {
 
         return valueReturn;
 	}
+	
+	public boolean verify(String query){
+		
+		boolean connected = connectDatabase();
+		int count = 0;
+		
+        if(connected){
+            try{
+                statement = connection.createStatement();
+                ResultSet retorno = statement.executeQuery(query);
+
+                while (retorno.next()){
+                    count ++;
+                }
+                if(count > 0){
+                	return true;
+                }
+                
+            }catch(SQLException exception){
+                exception.printStackTrace();
+
+            }finally {
+                try{
+                    statement.close();
+                    connection.close();
+                }catch (SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
+        
+        return false;
+	}
 }

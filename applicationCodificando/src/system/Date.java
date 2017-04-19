@@ -2,38 +2,35 @@ package system;
 
 public class Date {
 	 
-	public static String formatNormal(String data){
+	public static String formatNormal(String dateSQL){
 	        
-			//para amazenar data convertida
-	        String novaData = null;
+	        String newDate = null;
 
-	        //se data estiver correta
-	        String[] garantia = data.split("-");
-	        if (garantia.length == 3) {
-	            int ano = Integer.parseInt(garantia[0]);
-	            int mes = Integer.parseInt(garantia[1]);
-	            int dia = Integer.parseInt(garantia[2]);
+	        String[] date = dateSQL.split("-");
+	        if (date.length == 3) {
+	            int year = Integer.parseInt(date[0]);
+	            int month = Integer.parseInt(date[1]);
+	            int day = Integer.parseInt(date[2]);
 	            
-	            String anoTexto = String.valueOf(ano);
-	            String mesTexto = String.valueOf(mes);
-	            String diaTexto = String.valueOf(dia);
+	            String anoTexto = String.valueOf(year);
+	            String mesTexto = String.valueOf(month);
+	            String diaTexto = String.valueOf(day);
 
-	            if (ano > 0 && ano < 10){
-	            	anoTexto = "0" + String.valueOf(ano);
+	            if (year > 0 && year < 10){
+	            	anoTexto = "0" + String.valueOf(year);
 	            }
-	            if (mes > 0 && mes < 10){
-	            	mesTexto = "0" + String.valueOf(mes);
+	            if (month > 0 && month < 10){
+	            	mesTexto = "0" + String.valueOf(month);
 	            }
-	            if (dia > 0 && dia < 10){
-	            	diaTexto = "0" + String.valueOf(dia);
+	            if (day > 0 && day < 10){
+	            	diaTexto = "0" + String.valueOf(day);
 	            }
 	            
 	            
 
-	            novaData = diaTexto + "/" + mesTexto + "/" + anoTexto;
+	            newDate = diaTexto + "/" + mesTexto + "/" + anoTexto;
 	        }
 
-	        //se tudo de certo, e retornado a data convertida
-	        return novaData;
+	        return newDate;
 	    }
 }

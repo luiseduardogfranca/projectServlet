@@ -8,7 +8,8 @@ create table if not exists adm(
     email varchar(50) not null unique,
     born date not null,
     `password` varchar(15) not null,
-	description varchar(400) not null
+	description varchar(400) not null,
+    `gender` varchar(25) not null
 );
 create table if not exists article(
 	id integer auto_increment not null primary key,

@@ -30,11 +30,9 @@ public class Register extends HttpServlet{
 		String password = req.getParameter("password");
 		String date = req.getParameter("date");
 		String description = req.getParameter("description");
-
 		//register in database
 		String insert = String.format("insert into adm (first_name, last_name, email, born, `password`, description) "
 				+ "values ('%s','%s','%s','%s', '%s','%s')", firstName, lastName, email, date, password, description);
-		System.out.println(firstName);
 		//if okay, create page 
 		if(CodificandoDAO.getCodificandoDAO().insert(insert)){
 			resp.sendRedirect("index.jsp");
