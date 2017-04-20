@@ -22,13 +22,13 @@ public class LoginUser extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		resp.sendRedirect("index.jsp?errorLogin="+ERROR_EMAIL);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.setCharacterEncoding("UTF-8");
+
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		
@@ -55,7 +55,8 @@ public class LoginUser extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("user", user);
 				
-				req.getRequestDispatcher("index.jsp").include(req, resp);
+				req.getRequestDispatcher("login.jsp").include(req, resp);
+				resp.sendRedirect("login.jsp?");
 				
 			}else{
 				//error de login invalid 

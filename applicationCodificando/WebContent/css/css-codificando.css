@@ -18,6 +18,10 @@ html, body, .row, .content, .all{
   margin-top: 2%;
 }
 
+ul .col-xs-4{
+	padding:0;
+}
+
 .bar{
   background-color: #1c1f1c;
   box-shadow: 0 2px 5px 3px black;
@@ -27,6 +31,7 @@ html, body, .row, .content, .all{
   top: 0;
   left: 0;
   z-index: 1;
+  overflow-y:auto;
 }
 
 .header-bar{
@@ -34,10 +39,16 @@ html, body, .row, .content, .all{
   margin-bottom: 15%;
   width: 100%;
   text-align: center;
+  overflow:auto;
+}
+
+.header-bar-card{
+	height:65%;
 }
 
 .body-bar{
-  width: 100%
+  width: 100%;
+  margin-bottom: 20%;
 }
 
 .card-bar{
@@ -58,7 +69,14 @@ html, body, .row, .content, .all{
 .header-bar h2{
   font-size: 10pt;
   font-family: latoBold;
+  margin-top:10px;
 }
+
+h2 .badge{
+	font-size:7pt;
+	background:#0c9c5f;
+}
+
 
 .footer-bar{
   position: absolute;
@@ -142,6 +160,42 @@ html, body, .row, .content, .all{
 
 }
 
+.card-textarea{
+
+  box-shadow: 0 1px 5px 0 black;
+  background-color: transparent;
+
+  /*position*/
+  position: relative;
+  padding: 5% 5% 3% 5%;
+  margin-bottom: 10%;
+
+
+  /*dimension*/
+  width: 100%;
+
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.card-textarea div.input-group{
+	margin-top:2%;
+	margin-bottom:5%;
+}
+
+.card-textarea h1{
+  color: #414141;
+  margin-bottom:20px;
+  border-bottom-color: #414141;
+  border-bottom-style: groove;
+  border-bottom-width: 1px;
+}
+
+.button-fixed{
+	position: fixed;
+	top:30%;
+	right:5%;
+}
 
 .content{
   padding-top: 5%;
@@ -255,7 +309,6 @@ html, body, .row, .content, .all{
     src: url("../fonts/Lato-Thin.ttf");
 }
 
-
 /*desktop*/
 @media screen and (min-width: 1080px) {
   .content{
@@ -318,10 +371,6 @@ html, body, .row, .content, .all{
   .button-menu{
     display: inline;
     background-color: white;
-  }
-
-  #menu{
-	overflow:scroll;
   }
 }
 

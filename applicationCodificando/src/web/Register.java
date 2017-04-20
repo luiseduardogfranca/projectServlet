@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.CodificandoDAO;
+import system.Date;
 
 @WebServlet("/RegisterUser")
 public class Register extends HttpServlet{
@@ -29,10 +30,13 @@ public class Register extends HttpServlet{
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String date = req.getParameter("date");
+		date = Date.formatDatabse(date); //convert date 
 		String description = req.getParameter("description");
+		String gender = req.getParameter("gender");
+		
 		//register in database
-		String insert = String.format("insert into adm (first_name, last_name, email, born, `password`, description) "
-				+ "values ('%s','%s','%s','%s', '%s','%s')", firstName, lastName, email, date, password, description);
+		String insert = String.format("insert into adm (first_name, last_name, email, born, `password`, description, gender) "
+				+ "values ('%s','%s','%s','%s', '%s','%s', '%s')", firstName, lastName, email, date, password, description, gender);
 		//if okay, create page 
 		if(CodificandoDAO.getCodificandoDAO().insert(insert)){
 			resp.sendRedirect("index.jsp");

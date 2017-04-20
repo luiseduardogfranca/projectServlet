@@ -1,9 +1,8 @@
 <%@page import="system.User"%>
 <%@page import="system.Date"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="database.CodificandoDAO" %>
+<%@page import="database.CodificandoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt-br">
 
@@ -26,90 +25,7 @@
     <div class="container-fluid" style="height:100%;">
 
       <div class="row">
-
-        <%-- button menu --%>
-        <button type="button" class="button-menu" data-toggle="collapse" data-target="#menu"></button>
-
-        <!-- navbar -->
-        <div id="menu" class="col-xs-12 col-sm-4 col-md-3 bar collapse">
-
-		  <%
-		  if(session.getAttribute("user") == null){
-		  %>
-		  <div class="header-bar">
-          	<a href="index.jsp">
-            	<img class="element-block " src="image/logo-project.png" alt="logo"/>
-          	</a>
-          </div>
-          <div class="body-bar">
-	          <form class="element-lg element-center" method="post" action="./LoginUser">
-	            <div class="margin-menu input-group">
-	              <input name="email" type="text" class="form-control" name="email" placeholder="Email">
-	              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	            </div>
-
-	            <div class="margin-menu input-group">
-	              <input name="password" type="password" class="form-control" name="password" placeholder="Password">
-	              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-	            </div>
-
-	            <button class="margin-menu btn btn-success btn-block"type="submit" name="button">Entrar</button>
-
-	  			<a href="register.jsp" class="btn btn-link btn-block">Quero ser um autor(a) <span class="glyphicon glyphicon-pencil"></span></a>
-	          </form>
-          </div>
-
-          <div class="footer-bar">
-            <h3 class=""><span class="glyphicon glyphicon-copyright-mark"></span> Copyright 2017 - All Rights Reserved</h3>
-          </div>
-          <%}else{
-          		User user = (User) session.getAttribute("user");
-          		String email = user.getEmail();
-          		String password = user.getPassword();
-          		
-          		//read informations user 
-          		String query = String.format("SELECT * FROM adm WHERE email='%s'", email);
-          		String firstName = CodificandoDAO.getCodificandoDAO().read(query, "first_name").get(0);
-          		String date = Date.formatNormal(CodificandoDAO.getCodificandoDAO().read(query, "born").get(0));
-          		String description = CodificandoDAO.getCodificandoDAO().read(query, "description").get(0);
-          		String idAdmin = CodificandoDAO.getCodificandoDAO().read(query, "id").get(0);
-          		
-          		//quantity of articles 
-          		query = String.format("SELECT * FROM article WHERE id_adm=%s", idAdmin);
-          		ArrayList<String> article = CodificandoDAO.getCodificandoDAO().read(query, "id");
-          		int quantityArticle = article.size();
-          		
-          %>
-          <div class="well header-bar">
-          	<a href="index.jsp">
-            	<img class="element-md border-bottom" src="image/teacher-masc.png" alt="logo"/>
-          	</a>
-          	<h1><%=firstName %></h1>
-          	<div class="pre-scrollable card-bar">
-          		<h2>"<%=description %>"</h2>
-          	</div>
-          </div>
-          <div class="body-bar">
-          	
-          	<a class="margin-menu btn btn-default btn-block" href="index.jsp" name="button">Página inicial &nbsp; 
-            <span class="glyphicon glyphicon-home"></span></a>
-            <button class="margin-menu btn btn-default btn-block" href="./Logout" name="button">Criar novo artigo &nbsp; 
-            <span class="glyphicon glyphicon-plus"></span></button>
-          	<button class="margin-menu btn btn-default btn-block" href="./ArticlesAdmin" name="button">Meus artigos 
-          	<span class="badge"> <%=quantityArticle%> </span></span></button>
-            <button class="margin-menu btn btn-danger btn-block" href="./Logout" name="button">Logout &nbsp; 
-            <span class="glyphicon glyphicon-log-out"></span></button>
-            
-          </div>
-          <div class="footer-bar">
-            <h3 class=""><span class="glyphicon glyphicon-copyright-mark"></span> Copyright 2017 - All Rights Reserved</h3>
-          </div>
-
-          <% }%>
-
-
-        </div>
-
+		<%request.getRequestDispatcher("menu.jsp").include(request, response);%>
         <!-- content -->
         <div class="col-sm-offset-4 col-md-offset-3 all" >
 
@@ -134,7 +50,7 @@
             </header>
 	        <%
 	           	//exist article
-	        	for(int index = 0; index < idArticles.size(); index ++){
+	        	for(int index = (idArticles.size() - 1) ; index >= 0; index --){
 
 	        		//info of article
 	        		query = String.format("SELECT * FROM article WHERE id=%s", idArticles.get(index));

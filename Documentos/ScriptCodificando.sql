@@ -15,7 +15,6 @@ create table if not exists article(
 	id integer auto_increment not null primary key,
     title varchar(50) not null,
     description varchar(400) not null,
-    number_image int not null,
     date_create date not null, 
     id_adm integer not null,
     constraint article_adm 

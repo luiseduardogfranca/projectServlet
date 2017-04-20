@@ -34,7 +34,7 @@ public class Login {
     }
 
     //verifica se usuario esta logado
-    public static boolean usuarioLogado(String email){
+    public static boolean userLogged(String email){
         boolean logado = false;
         for(int index = 0; index < logins.size(); index ++) {
             //recupera email
@@ -51,7 +51,7 @@ public class Login {
     }
 
     //retorna login com base no ID de login
-    public static String retornoEmail(int idLogin){
+    public static String returnEmail(int idLogin){
         String loginUser = null;
 
         //varre Array de logins a procura do login compativel com o ID passado
@@ -66,7 +66,7 @@ public class Login {
     }
 
     //retorna ID de login com base no login
-    public static int retornoIdLogin(String emailUser){
+    public static int returnIdLogin(String emailUser){
         int idLogin = 0;
 
         //varre Array de email a procura do login compativel com o ID passado
@@ -78,5 +78,18 @@ public class Login {
 
         //retorna login caso exista com base no ID, ou retorna o null caso nao exista
         return idLogin;
+    }
+    
+    public static boolean logoutUser(int idLogin){
+    	
+    	for(int index = 0; index < logins.size(); index ++){
+    		Login login = logins.get(index);
+    		if(login.getIdLogin() == idLogin){
+    			logins.remove(index);
+    			return true;
+    		}
+    	}
+    	
+    	return false;
     }
 }
